@@ -1,8 +1,11 @@
 package ui;
 
+import model.Cat;
+
+import model.Food;
 import model.User;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class PetApp {
     private User user;
@@ -13,6 +16,8 @@ public class PetApp {
     }
 
     private void runGame() {
+        // reference from bankTeller app
+        user = new User();
         boolean keepGoing = true;
         while (keepGoing) {
             System.out.println("Welcome to my Virtual Cat Game!");
@@ -22,25 +27,102 @@ public class PetApp {
             Scanner input = new Scanner(System.in);
             String nextMove = input.nextLine();
 
-            if (nextMove == "p") {
-                //go to menu
-            } else if (nextMove == "q") {
+            if (nextMove.equals("p")) {
+                System.out.println("Generating cat............");
+                createRandomCat();
+                displayMenu();
+            } else if (nextMove.equals("q")) {
                 keepGoing = false;
+            } else {
+                System.out.println("invalid input.............");
             }
-            else
+        }
+    }
+
+    // initialize cat
+    private void createRandomCat() {
+        List<String> breedList = new ArrayList<>();
+        breedList.add("Ragdoll");
+        breedList.add("British Short hair");
+        breedList.add("Persian");
+        Random randomizer = new Random();
+        String randomBreed = breedList.get(randomizer.nextInt(breedList.size()));
+        Cat newCat = new Cat(randomBreed);
+        user.addCat(newCat);
+    }
+
+    // print shop menu, display
+    private void displayMenu() {
+        // reference from bankTeller app
+        boolean menuRunning = true;
+        while (menuRunning) {
+            drawCat();
+            System.out.println("Feed..................[f]");
+            System.out.println("Play..................[p]");
+            System.out.println("Inventory.............[i]");
+            System.out.println("Shop..................[s]");
+            System.out.println("MyCat.................[c]");
+            System.out.println("Quit..................[q]\n");
+            Scanner input = new Scanner(System.in);
+            String nextMove = input.nextLine();
+            if (nextMove.equals("q")) {
+                menuRunning = false;
+            } else {
+                processCommand(nextMove);
+            }
+
+        }
+    }
+
+    private void drawCat() {
+        System.out.println("  ^_^ ");
+        System.out.println("( o.o )");
+        System.out.println(" > ^ <\n");
+    }
+
+    //processCommand
+    private void processCommand(String nextMove) {
+        if (nextMove.equals("f")) {
+            feedCat();
+        } else if (nextMove.equals("p")) {
+            playCat();
+        } else if (nextMove.equals("i")) {
+            printInventory();
+        } else if (nextMove.equals("s")) {
+            initShop();
+            printShopCatalogue();
+            displayShopMenu();
+        } else if (nextMove.equals("c")) {
+            viewCat();
+        } else {
+            System.out.println("invalid input.............");
         }
 
-
-        // process command
-
-        // initialize cat
-
-        // print shop menu, display
-
-        // check my inventory
-
-        // interact with model.pet
-
-        // view my cat's stats
-
     }
+
+    // feed cat
+
+    // play cat
+
+    // print Inventory
+    private void printInventory() {
+
+        List<Food> myInventory = user.getInventory();
+        for (Food f : myInventory) {
+            System.out.println("Item: " + f.getName()
+                    + " Energy: " + f.getAddEnergyLevel()
+                    + " Happiness: " + f.getAddHappiness()
+                    + " Hunger: " + f.getAddHunger() + "\n");
+        }
+    }
+
+    //init shop with 3 items
+
+    // print shop catalogue
+
+    // display shop menu (buy, back)
+
+    // view my cat's stats (get Cat's stats)
+
+
+}

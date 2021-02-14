@@ -4,14 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class User {
-    private String name;
+
     private int myBalance;
     private List<Food> inventory;
     private Cat myPet;
 
     //Constructor
-    public User(String name) {
-        this.name = name;
+    public User() {
         myBalance = 100;
         inventory = new LinkedList<Food>();
     }
@@ -26,16 +25,16 @@ public class User {
         return isPurchased;
     }
 
-    public void useItem(Consumable item)
-
-
-    public String getName() {
-        return name;
+    public void addCat(Cat cat) {
+        myPet = cat;
     }
 
     public int getBalance() {
         return myBalance;
     }
 
+    public List<Food> getInventory() {
+        return inventory;
+    }
 
 }

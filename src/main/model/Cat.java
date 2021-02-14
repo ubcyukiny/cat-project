@@ -12,10 +12,8 @@ public class Cat {
 
 
     //Constructor
-    public Cat(String name, String breed, Sex sex) {
-        this.name = name;
+    public Cat(String breed) {
         this.breed = breed;
-        this.sex = sex;
         happiness = 50;
         hungerLevel = 50;
         energyLevel = 50;
