@@ -6,7 +6,7 @@ I played *Neopets* and *Pet Society* when I was young, and I wanted to recreate 
 
 What this application can do:
 - Login using your own username
-- Choose one from a list of (Dog, Cat, Rabbit), and associate with the user account
+- Choose one of Dog or Cat, and associate with the user account
 - Customize Pet's name
 - Feed, play, chat with your pet!
 
