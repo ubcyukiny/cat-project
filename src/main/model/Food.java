@@ -16,6 +16,8 @@ public class Food {
         addHunger = hungerBoost;
     }
 
+
+    //getters
     public String getName() {
         return name;
     }

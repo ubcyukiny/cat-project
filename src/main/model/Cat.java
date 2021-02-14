@@ -1,11 +1,11 @@
 package model;
 
 public class Cat {
-    private static final int maxLevel = 100;
+    public static final int maxLevel = 100;
+    public static final int minLevel = 0;
 
-    private String name;
+
     private String breed;
-    private Sex sex;
     private int happiness;
     private int hungerLevel;
     private int energyLevel;
@@ -19,35 +19,39 @@ public class Cat {
         energyLevel = 50;
     }
 
-    public void play(Toy toy) {
-        happiness += toy.getAddHappiness();
-        energyLevel -= toy.getAddEnergyLevel();
-    }
-
     public void feed(Food food) {
         happiness += food.getAddHappiness();
         hungerLevel += food.getAddHunger();
         energyLevel += food.getAddEnergyLevel();
-
+        levelCheck();
     }
 
-    public void chat() {
-        happiness += 5;
-        energyLevel -= 5;
-    }
 
+    public void levelCheck() {
+        if (happiness > maxLevel) {
+            happiness = maxLevel;
+        }
+        if (hungerLevel > maxLevel) {
+            hungerLevel = maxLevel;
+        }
+        if (energyLevel > maxLevel) {
+            energyLevel = maxLevel;
+        }
+        if (happiness < minLevel) {
+            happiness = minLevel;
+        }
+        if (hungerLevel < minLevel) {
+            hungerLevel = minLevel;
+        }
+        if (energyLevel < minLevel) {
+            energyLevel = minLevel;
+        }
+    }
 
     // getters
-    public String getName() {
-        return name;
-    }
 
     public String getBreed() {
         return breed;
-    }
-
-    public Sex getSex() {
-        return sex;
     }
 
     public int getEnergyLevel() {
@@ -61,4 +65,5 @@ public class Cat {
     public int getHungerLevel() {
         return hungerLevel;
     }
+
 }

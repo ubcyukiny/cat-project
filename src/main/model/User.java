@@ -15,19 +15,29 @@ public class User {
         inventory = new LinkedList<Food>();
     }
 
-    public boolean purchase(Food item) {
+    public boolean canPurchase(Food item) {
         boolean isPurchased = false;
         if (myBalance >= item.getPrice()) {
-            myBalance -= item.getPrice();
-            inventory.add(item);
             isPurchased = true;
         }
         return isPurchased;
     }
 
+    public void addItem(Food item) {
+        inventory.add(item);
+        myBalance -= item.getPrice();
+    }
+
     public void addCat(Cat cat) {
         myPet = cat;
     }
+
+
+    public void removeFirstItem() {
+        inventory.remove(0);
+    }
+
+    //getters
 
     public int getBalance() {
         return myBalance;
@@ -36,5 +46,10 @@ public class User {
     public List<Food> getInventory() {
         return inventory;
     }
+
+    public Cat getMyPet() {
+        return myPet;
+    }
+
 
 }
