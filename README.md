@@ -1,15 +1,20 @@
-# What's For Dinner?
+# Virtual Pet
 
-## Randomly picks a cuisine style according to user's preference!
+## Application that lets you play with a cute pet!
 
-You are hanging out with your girlfriend on a Saturday night. She asks you, "***Babe**, what are we getting for dinner?*"
-You keep scrolling on Ubereats, but still can't decide. She's getting *grumpy*. What now?
+I played *Neopets* and *Pet Society* when I was young, and I wanted to recreate a virtual pet game for this project.
 
-Introducing "**What's For Picker**", the application to this problem:
+What this application can do:
 - Login using your own username
-- Let new users pick their preferred cuisine styles from a list and store it with the username
-- Randomly chooses 1 style from the preferred list
-- Record the occurrence and decrease the odd of choosing the same cuisine style next time
-- provide details of 3 restaurants of that cuisine style in Vancouver using Restaurants API
+- Choose one from a list of (Dog, Cat, Rabbit), and associate with the user account
+- Customize Pet's name
+- Feed, play, chat with your pet!
+
+
+##User Stories
+- As a user, I want to be able to create my account with a password
+- As a user, I want to be able to create a pet(dog, cat, rabbit) to my account
+- As a user, I want to be able to have interactions with my pet
+- 
 
 
