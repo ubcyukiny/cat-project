@@ -1,45 +1,66 @@
 package model;
 
-public class Cat implements Pet {
+public class Cat {
     private static final int maxLevel = 100;
 
     private String name;
+    private String breed;
+    private Sex sex;
     private int happiness;
     private int hungerLevel;
     private int energyLevel;
-    private boolean canInteract;
+
 
     //Constructor
-    public Cat(String name) {
+    public Cat(String name, String breed, Sex sex) {
         this.name = name;
+        this.breed = breed;
+        this.sex = sex;
         happiness = 50;
         hungerLevel = 50;
         energyLevel = 50;
     }
 
-    @Override
-    public void play() {
-        happiness += 15;
-        energyLevel -= 30;
+    public void play(Toy toy) {
+        happiness += toy.getAddHappiness();
+        energyLevel -= toy.getAddEnergyLevel();
     }
 
-    @Override
-    public void feed() {
-        happiness += 5;
-        hungerLevel += 20;
-        energyLevel += 20;
+    public void feed(Food food) {
+        happiness += food.getAddHappiness();
+        hungerLevel += food.getAddHunger();
+        energyLevel += food.getAddEnergyLevel();
+
     }
 
-    @Override
     public void chat() {
         happiness += 5;
         energyLevel -= 5;
     }
 
-    @Override
-    public void sleep() {
-        canInteract = false;
-        energyLevel = maxLevel;
-        hungerLevel -= 20;
+
+    // getters
+    public String getName() {
+        return name;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public int getEnergyLevel() {
+        return energyLevel;
+    }
+
+    public int getHappiness() {
+        return happiness;
+    }
+
+    public int getHungerLevel() {
+        return hungerLevel;
     }
 }

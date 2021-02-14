@@ -1,26 +1,41 @@
 package model;
 
-import model.Pet;
+import java.util.LinkedList;
+import java.util.List;
 
 public class User {
-
-    private String username;
-    private String password;
-    private Pet myPet;
+    private String name;
+    private int myBalance;
+    private List<Food> inventory;
+    private Cat myPet;
 
     //Constructor
-    public User(String name, String pw) {
-        username = name;
-        password = pw;
+    public User(String name) {
+        this.name = name;
+        myBalance = 100;
+        inventory = new LinkedList<Food>();
+    }
 
+    public boolean purchase(Food item) {
+        boolean isPurchased = false;
+        if (myBalance >= item.getPrice()) {
+            myBalance -= item.getPrice();
+            inventory.add(item);
+            isPurchased = true;
+        }
+        return isPurchased;
+    }
+
+    public void useItem(Consumable item)
+
+
+    public String getName() {
+        return name;
+    }
+
+    public int getBalance() {
+        return myBalance;
     }
 
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 }
