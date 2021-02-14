@@ -38,9 +38,12 @@ public class UserTest {
     @Test
     void testAddItem() {
         assertEquals(0, testUser.getInventory().size());
+        assertEquals(100, testUser.getBalance());
         testUser.addItem(testFoodCanBuy);
+        assertEquals(100 - testFoodCanBuy.getPrice(), testUser.getBalance());
         assertEquals(1, testUser.getInventory().size());
         assertEquals(0, testUser.getBalance() - testFoodCanBuy.getPrice());
+
     }
 
     //addCat
@@ -58,10 +61,9 @@ public class UserTest {
         testUser.addItem(testFoodCantBuy); //1st
         testUser.addItem(testFoodCanBuy); // 2nd added
         assertEquals(2, testUser.getInventory().size());
-        testUser.removeFirstItem(); //1st will be removed
+        testUser.removeFirstItem(); //1st will be removed, 2nd remains
         assertEquals(1, testUser.getInventory().size());
-        assertTrue(testUser.getInventory().contains(testFoodCanBuy)); // contains 2nd
-        assertFalse(testUser.getInventory().contains(testFoodCantBuy)); // doesn't contain 1st
+        assertTrue(testUser.getInventory().get(0).equals(testFoodCanBuy)); // remaining now become first in list
 
     }
 

@@ -15,8 +15,8 @@ public class CatTest {
     void runBefore(){
         testCat = new Cat("Ragdoll");
         testFood = new Food("test", 20, 5,-15,10);
-        testMaxFood = new Food("MaxFood", 20, 45,50,55);
-        testMinFood = new Food("MinFood", 20, -45,-50,-55);
+        testMaxFood = new Food("MaxFood", 20, 55,55,55);
+        testMinFood = new Food("MinFood", 20, -55,-55,-55);
     }
     //test Constructor
     @Test
@@ -40,7 +40,7 @@ public class CatTest {
     @Test
     void  testLevelCheckMax() {
         testCat.feed(testMaxFood);
-        assertEquals(95, testCat.getHappiness());
+        assertEquals(100, testCat.getHappiness());
         assertEquals(100,testCat.getEnergyLevel());
         assertEquals(100,testCat.getHungerLevel());
     }
@@ -49,7 +49,7 @@ public class CatTest {
     @Test
     void  testLevelCheckMin() {
         testCat.feed(testMinFood);
-        assertEquals(5, testCat.getHappiness());
+        assertEquals(0, testCat.getHappiness());
         assertEquals(0,testCat.getEnergyLevel());
         assertEquals(0,testCat.getHungerLevel());
     }

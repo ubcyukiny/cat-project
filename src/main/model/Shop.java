@@ -3,22 +3,22 @@ package model;
 import java.util.ArrayList;
 
 public class Shop {
-    private ArrayList<Food> foods;
+    private ArrayList<Food> Catalogue;
 
     // constructor
     public Shop() {
-        foods = new ArrayList<Food>();
+        Catalogue = new ArrayList<Food>();
     }
 
     public void addItems(Food item) {
-        foods.add(item);
+        Catalogue.add(item);
     }
 
-    public ArrayList<Food> getFoods() {
-        return foods;
+    public ArrayList<Food> getCatalogue() {
+        return Catalogue;
     }
 
     public int getSize() {
-        return foods.size();
+        return Catalogue.size();
     }
 }

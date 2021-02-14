@@ -184,7 +184,7 @@ public class PetApp {
 
     // print shop catalogue
     private void printShopCatalogue() {
-        List<Food> shopInventory = shop.getFoods();
+        List<Food> shopInventory = shop.getCatalogue();
         for (Food f : shopInventory) {
             System.out.println("Item: " + f.getName());
             System.out.println(" Price: " + f.getPrice()

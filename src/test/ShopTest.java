@@ -23,6 +23,12 @@ public class ShopTest {
     }
 
     @Test
+    void testGetFoods() {
+        //testFood should be empty and initialized not null
+        assertFalse(testFoods.getCatalogue() == null);
+    }
+
+    @Test
     void testGetSize() {
         assertEquals(0, testFoods.getSize());
     }
