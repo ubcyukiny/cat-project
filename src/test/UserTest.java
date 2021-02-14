@@ -12,7 +12,9 @@ public class UserTest {
     private User testUser;
     private Food testFoodCanBuy;
     private Food testFoodCantBuy;
+    private Food testFood1;
     private Cat testCatToAdd;
+
 
     @BeforeEach
     void setup() {
@@ -37,12 +39,13 @@ public class UserTest {
     }
     @Test
     void testAddItem() {
+        testFood1 = new Food("testFood1",
+                20, 20, 20, 20);
         assertEquals(0, testUser.getInventory().size());
         assertEquals(100, testUser.getBalance());
-        testUser.addItem(testFoodCanBuy);
-        assertEquals(100 - testFoodCanBuy.getPrice(), testUser.getBalance());
+        testUser.addItem(testFood1);
+        assertEquals(100 - testFood1.getPrice(), testUser.getBalance());
         assertEquals(1, testUser.getInventory().size());
-        assertEquals(0, testUser.getBalance() - testFoodCanBuy.getPrice());
 
     }
 
@@ -58,6 +61,10 @@ public class UserTest {
     //removeFirstItem
     @Test
     void testRemoveFirstItem() {
+        testFoodCanBuy = new Food("testFoodCanBuy",
+                testUser.getBalance(), 20, 20, 20);
+        testFoodCantBuy = new Food("testFoodCantBuy",
+                testUser.getBalance() + 2, 20, 20, 20);
         testUser.addItem(testFoodCantBuy); //1st
         testUser.addItem(testFoodCanBuy); // 2nd added
         assertEquals(2, testUser.getInventory().size());
