@@ -1,6 +1,8 @@
 package model;
 
 public class Dog implements Pet {
+    private static final int maxLevel = 100;
+
     private String name;
     private int happiness;
     private int hungerLevel;

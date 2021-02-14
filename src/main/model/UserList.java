@@ -9,11 +9,14 @@ public class UserList {
         users.add(user1);
     }
 
-    public User findUser(String username, String password) {
+    public boolean findUser(String username, String password) {
+        boolean isFound = false;
         for (User user : users) {
             if (user.getUsername() == username && user.getPassword() == password) {
-                return user;
+                isFound = true;
             }
         }
-        return false;
+        return isFound;
     }
+}
+
