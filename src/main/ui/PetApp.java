@@ -17,14 +17,13 @@ public class PetApp {
     private final Food dietFood;
 
 
-
-
+    // EFFECTS: initialize user and shop, add food objects to shop catalogue, then runs the Pet Game
     public PetApp() {
         user = new User();
         shop = new Shop();
-        cannedSalmon = new Food("Canned salmon", 20, 20,30,20);
-        dryTreats = new Food("Dry Treats",10,15,15,10);
-        dietFood = new Food("Diet food", 25,-10,25,25);
+        cannedSalmon = new Food("Canned salmon", 20, 20, 30, 20);
+        dryTreats = new Food("Dry Treats", 10, 15, 15, 10);
+        dietFood = new Food("Diet food", 25, -10, 25, 25);
         shop.addItems(cannedSalmon);
         shop.addItems(dryTreats);
         shop.addItems(dietFood);
@@ -32,31 +31,26 @@ public class PetApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: process user input
     private void runGame() {
-        // reference from bankTeller app
+        // MENU FORMAT REFERENCES FROM BANK TELLER APP
         boolean keepGoing = true;
         while (keepGoing) {
-            System.out.println("Welcome to my Virtual Cat Game!");
-            System.out.println("===============================");
-            System.out.println("play........................[p]");
-            System.out.println("quit........................[q]\n");
+            displayFirstMenu();
             Scanner input = new Scanner(System.in);
             String nextMove = input.nextLine();
 
-            if (nextMove.equals("p")) {
-                System.out.println("Generating cat............");
-                createRandomCat();
-                System.out.println("You have a " + newCat.getBreed() + " cat!");
-                displayMenu();
-            } else if (nextMove.equals("q")) {
+            if (nextMove.equals("q")) {
                 keepGoing = false;
             } else {
-                System.out.println("invalid input.............");
+                processFirstMenuCommand(nextMove);
             }
         }
     }
 
-    // initialize cat
+    // MODIFIES: this
+    // EFFECTS: randomly choose a breed from a list of two, initialize a cat with that breed and add it to user
     private void createRandomCat() {
         List<String> breedList = new ArrayList<>();
         breedList.add("Ragdoll");
@@ -67,30 +61,27 @@ public class PetApp {
         user.addCat(newCat);
     }
 
-    // print shop menu, display
-    private void displayMenu() {
-        // reference from bankTeller app
+    // MODIFIES: this
+    // EFFECTS: display game menu, process command
+    private void gameMenu() {
+        // FORMAT REFERENCE FROM BANK TELLER APP
         boolean menuRunning = true;
         while (menuRunning) {
-            drawCat(newCat.getBreed());
-            System.out.println("Feed..................[f]");
-            System.out.println("Inventory.............[i]");
-            System.out.println("Shop..................[s]");
-            System.out.println("MyCat.................[c]");
-            System.out.println("Quit..................[q]\n");
+            displayGameMenu();
             Scanner input = new Scanner(System.in);
             String nextMove = input.nextLine();
             if (nextMove.equals("q")) {
                 System.exit(0);
             } else {
-                processCommand(nextMove);
+                processGameMenuCommand(nextMove);
             }
 
         }
     }
 
+    // EFFECTS: print cat ASCII art, according to breeds
     private void drawCat(String breed) {
-        // ALL ASCII ARTWORKS FROM https://www.asciiart.eu/animals/cats
+        // REFERENCE: ALL ASCII ARTWORKS FROM https://www.asciiart.eu/animals/cats
         if (breed.equals("Ragdoll")) {
             System.out.println("  ^_^  ");
             System.out.println("( o.o )");
@@ -103,29 +94,11 @@ public class PetApp {
         }
     }
 
-    //processCommand
-    private void processCommand(String nextMove) {
-        switch (nextMove) {
-            case "f":
-                feedCat();
-                break;
-            case "i":
-                printInventory();
-                break;
-            case "s":
-                displayShop();
-                break;
-            case "c":
-                viewCat();
-                break;
-            default:
-                System.out.println("invalid input.............");
-                break;
-        }
 
-    }
 
-    // feed cat
+    // MODIFIES: this
+    // EFFECTS: consumes first food object in user's inventory,
+    // print different statements when (empty inventory, consumed diet food, and else)
     private void feedCat() {
         if (user.getInventory().isEmpty()) {
             System.out.println("You don't have anything to feed your cat!");
@@ -144,7 +117,7 @@ public class PetApp {
     }
 
 
-    // print Inventory
+    // EFFECTS: print a list of Food objects in user's inventory
     private void printInventory() {
         System.out.println("My balance: " + user.getBalance());
         List<Food> myInventory = user.getInventory();
@@ -160,29 +133,19 @@ public class PetApp {
         }
     }
 
-    //init shop with 3 items
-    private void displayShop() {
+    // MODIFIES: this
+    // EFFECTS: process user command
+    private void shopMenu() {
         System.out.println("Your Balance: " + user.getBalance());
         printShopCatalogue();
-        System.out.println("Buy canned salmon?...........[cs]");
-        System.out.println("Buy dryTreat?................[dt]");
-        System.out.println("Buy dietFood?................[df]\n");
+        displayShopMenu();
         Scanner input = new Scanner(System.in);
         String nextMove = input.nextLine();
-        switch (nextMove) {
-            case "cs":
-                purchase(user, cannedSalmon);
-                break;
-            case "dt":
-                purchase(user, dryTreats);
-                break;
-            case "df":
-                purchase(user, dietFood);
-                break;
-        }
+        processShopMenuCommand(nextMove);
     }
 
-    // print shop catalogue
+    // REQUIRES: shop's catalogue must not be empty
+    // EFFECT: print every item with values of variables in shop catalogue
     private void printShopCatalogue() {
         List<Food> shopInventory = shop.getCatalogue();
         for (Food f : shopInventory) {
@@ -195,7 +158,8 @@ public class PetApp {
     }
 
 
-    // view my cat's stats (get Cat's stats)
+    // REQUIRES: cat must be initialized
+    // EFFECTS: print user's pet attributes
     private void viewCat() {
         System.out.println("Breed: " + newCat.getBreed());
         System.out.println("Energy: " + newCat.getEnergyLevel());
@@ -203,12 +167,94 @@ public class PetApp {
         System.out.println("Hunger: " + newCat.getHungerLevel() + "\n");
     }
 
+    // MODIFIES: this
+    // EFFECTS: add Food object f into user u's inventory,
+    // user u's balance will be deducted by food f's price
     private void purchase(User u, Food f) {
         if (u.canPurchase(f)) {
             u.addItem(f);
             System.out.println(f.getName() + " added to your inventory");
         } else {
             System.out.println("Insufficient Balance!");
+        }
+    }
+
+    // EFFECTS: display first menu options
+    private void displayFirstMenu() {
+        System.out.println("Welcome to my Virtual Cat Game!");
+        System.out.println("===============================");
+        System.out.println("play........................[p]");
+        System.out.println("quit........................[q]\n");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: process user command on first menu options
+    private void processFirstMenuCommand(String nextMove) {
+        if (nextMove.equals("p")) {
+            System.out.println("Generating cat............");
+            createRandomCat();
+            System.out.println("You have a " + newCat.getBreed() + " cat!");
+            gameMenu();
+        } else {
+            System.out.println("invalid input.............");
+        }
+    }
+
+    // EFFECTS: display ASCII cat art, game menu options
+    private void displayGameMenu() {
+        drawCat(newCat.getBreed());
+        System.out.println("Feed..................[f]");
+        System.out.println("Inventory.............[i]");
+        System.out.println("Shop..................[s]");
+        System.out.println("MyCat.................[c]");
+        System.out.println("Quit..................[q]\n");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: process user command
+    private void processGameMenuCommand(String nextMove) {
+        switch (nextMove) {
+            case "f":
+                feedCat();
+                break;
+            case "i":
+                printInventory();
+                break;
+            case "s":
+                shopMenu();
+                break;
+            case "c":
+                viewCat();
+                break;
+            default:
+                System.out.println("invalid input.............");
+                break;
+        }
+    }
+
+    // EFFECTS: display shop menu options
+    private void displayShopMenu() {
+        System.out.println("Buy canned salmon?...........[cs]");
+        System.out.println("Buy dryTreat?................[dt]");
+        System.out.println("Buy dietFood?................[df]\n");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: process user command on shop menu options
+    private void processShopMenuCommand(String nextMove) {
+        switch (nextMove) {
+            case "cs":
+                purchase(user, cannedSalmon);
+                break;
+            case "dt":
+                purchase(user, dryTreats);
+                break;
+            case "df":
+                purchase(user, dietFood);
+                break;
+            default:
+                System.out.println("invalid input.............");
+                break;
         }
     }
 }

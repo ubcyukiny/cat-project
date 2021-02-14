@@ -7,7 +7,8 @@ public class Food {
     private int addEnergyLevel;
     private int addHunger;
 
-    //constructor
+    // REQUIRES: name length must be non-zero, price must be >= 0
+    // EFFECTS: construct food with its name, price, and 3 attributes boost
     public Food(String name, int price, int happyBoost, int energyBoost, int hungerBoost) {
         this.name = name;
         this.price = price;
@@ -17,7 +18,7 @@ public class Food {
     }
 
 
-    //getters
+    //EFFECTS: getters
     public String getName() {
         return name;
     }

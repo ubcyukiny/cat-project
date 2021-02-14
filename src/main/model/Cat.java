@@ -10,8 +10,9 @@ public class Cat {
     private int hungerLevel;
     private int energyLevel;
 
-
-    //Constructor
+    // REQUIRES: breed has a non-zero length
+    // EFFECTS: construct a cat, with this.breed set to breed(input),
+    // happiness, hungryLevel and energyLevel are initialized at 50
     public Cat(String breed) {
         this.breed = breed;
         happiness = 50;
@@ -19,6 +20,8 @@ public class Cat {
         energyLevel = 50;
     }
 
+    // MODIFIES: this
+    // EFFECTS: change happiness, hungerLevel, energyLevel, according to food(input)'s attributes
     public void feed(Food food) {
         happiness += food.getAddHappiness();
         hungerLevel += food.getAddHunger();
@@ -26,7 +29,8 @@ public class Cat {
         levelCheck();
     }
 
-
+    // MODIFIES: this
+    // EFFECTS : adjust happiness, hungerLevel, energyLevel when outside minLevel or maxLevel
     public void levelCheck() {
         if (happiness > maxLevel) {
             happiness = maxLevel;
@@ -48,8 +52,7 @@ public class Cat {
         }
     }
 
-    // getters
-
+    // EFFECTS: getters
     public String getBreed() {
         return breed;
     }
