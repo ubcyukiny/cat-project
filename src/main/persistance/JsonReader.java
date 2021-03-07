@@ -1,5 +1,7 @@
 package persistance;
 
+import model.Cat;
+import model.Food;
 import model.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,6 +10,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static java.lang.Integer.parseInt;
@@ -34,7 +37,7 @@ public class JsonReader {
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try (Stream<String> stream = Files.lines( Paths.get(source), StandardCharsets.UTF_8)) {
+        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
@@ -43,14 +46,17 @@ public class JsonReader {
 
     // EFFECTS: parses User from JSON object and returns it
     private User parseUser(JSONObject jsonObject) {
-        int myBalance = jsonObject.getInt("Balance");
-        // retrieve inventory
-        // List<Food> inventory = jsonObject.get???
-        // retrieve cat
+
         User user = new User();
-        user.setBalance(myBalance);
+        user.setBalance(jsonObject.getInt("Balance"));
+        // retrieve inventory
+        addFoods(user, jsonObject);
+        // retrieve cat
         // add Cat
-        //user.addCat(cat);
+        JSONObject catJsonObject = jsonObject.getJSONObject("Cat");
+        Cat cat = new Cat(catJsonObject.getString("breed"), catJsonObject.getInt("happiness"),
+                catJsonObject.getInt("hungerLevel"), catJsonObject.getInt("energyLevel"));
+        user.addCat(cat);
         return user;
     }
 
@@ -65,11 +71,15 @@ public class JsonReader {
     }
 
     // MODIFIES: user
-    // EFFECTS: parses food from JSON object and adds it to workroom
+    // EFFECTS: parses food from JSON object and adds it to users inventory
     private void addFood(User user, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        Category category = Category.valueOf(jsonObject.getString("category"));
-        Thingy thingy = new Thingy(name, category);
-        wr.addThingy(thingy);
+        Food food = new Food(jsonObject.getString("name"), jsonObject.getInt("price"),
+                jsonObject.getInt("addHappiness"), jsonObject.getInt("addEnergyLevel"),
+                jsonObject.getInt("addHunger"));
+        List<Food> inventory = user.getInventory();
+        inventory.add(food);
+        user.setInventory(inventory);
     }
+
+
 }

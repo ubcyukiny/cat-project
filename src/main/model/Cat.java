@@ -2,6 +2,7 @@ package model;
 
 import org.json.JSONObject;
 import persistance.Writable;
+import java.time.LocalDate;
 
 public class Cat implements Writable {
     public static final int maxLevel = 100;
@@ -12,15 +13,16 @@ public class Cat implements Writable {
     private int happiness;
     private int hungerLevel;
     private int energyLevel;
+    LocalDate date; // Create a date object
 
     // REQUIRES: breed has a non-zero length
     // EFFECTS: construct a cat, with this.breed set to breed(input),
     // happiness, hungryLevel and energyLevel are initialized at 50
-    public Cat(String breed) {
+    public Cat(String breed, int happiness, int hungerLevel, int energyLevel) {
         this.breed = breed;
-        happiness = 50;
-        hungerLevel = 50;
-        energyLevel = 50;
+        this.happiness = happiness;
+        this.hungerLevel = hungerLevel;
+        this.energyLevel = energyLevel;
     }
 
     // MODIFIES: this

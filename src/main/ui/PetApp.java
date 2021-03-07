@@ -5,22 +5,28 @@ import model.Cat;
 import model.Food;
 import model.Shop;
 import model.User;
+import persistance.JsonWriter;
+import persistance.JsonReader;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
+
 
 public class PetApp {
     private static final String JSON_STORE = "./data/user.json";
-    private final User user;
+    private User user;
     private final Shop shop;
-    private Cat newCat;
     private final Food cannedSalmon;
     private final Food dryTreats;
     private final Food dietFood;
-
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: initialize user and shop, add food objects to shop catalogue, then runs the Pet Game
     public PetApp() {
-
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         user = new User();
         shop = new Shop();
         cannedSalmon = new Food("Canned salmon", 20, 20, 30, 20);
@@ -59,8 +65,8 @@ public class PetApp {
         breedList.add("British Short hair");
         Random randomizer = new Random();
         String randomBreed = breedList.get(randomizer.nextInt(breedList.size()));
-        newCat = new Cat(randomBreed);
-        user.addCat(newCat);
+        Cat cat = new Cat(randomBreed, 50, 50,50);
+        user.addCat(cat);
     }
 
     // MODIFIES: this
@@ -73,11 +79,25 @@ public class PetApp {
             Scanner input = new Scanner(System.in);
             String nextMove = input.nextLine();
             if (nextMove.equals("q")) {
+                saveUser();
                 System.exit(0);
+
             } else {
                 processGameMenuCommand(nextMove);
             }
 
+        }
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveUser() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(user);
+            jsonWriter.close();
+            System.out.println("Saved game to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 
@@ -97,7 +117,6 @@ public class PetApp {
     }
 
 
-
     // MODIFIES: this
     // EFFECTS: consumes first food object in user's inventory,
     // print different statements when (empty inventory, consumed diet food, and else)
@@ -106,7 +125,7 @@ public class PetApp {
             System.out.println("You don't have anything to feed your cat!");
             System.out.println("Head to Shop and buy some food!\n\n");
         } else {
-            newCat.feed(user.getInventory().get(0));
+            user.getCat().feed(user.getInventory().get(0));
             if (user.getInventory().get(0).getName().equals("Diet food")) {
                 System.out.println("Consumed 1 Diet food");
                 System.out.println("Your cat hates it!\n\n");
@@ -163,10 +182,10 @@ public class PetApp {
     // REQUIRES: cat must be initialized
     // EFFECTS: print user's pet attributes
     private void viewCat() {
-        System.out.println("Breed: " + newCat.getBreed());
-        System.out.println("Energy: " + newCat.getEnergyLevel());
-        System.out.println("Happiness: " + newCat.getHappiness());
-        System.out.println("Hunger: " + newCat.getHungerLevel() + "\n");
+        System.out.println("Breed: " + user.getCat().getBreed());
+        System.out.println("Energy: " + user.getCat().getEnergyLevel());
+        System.out.println("Happiness: " + user.getCat().getHappiness());
+        System.out.println("Hunger: " + user.getCat().getHungerLevel() + "\n");
     }
 
     // MODIFIES: this
@@ -193,18 +212,32 @@ public class PetApp {
     // EFFECTS: process user command on first menu options
     private void processFirstMenuCommand(String nextMove) {
         if (nextMove.equals("p")) {
-            System.out.println("Generating cat............");
-            createRandomCat();
-            System.out.println("You have a " + newCat.getBreed() + " cat!");
+            if (!loadUser()) {
+                System.out.println("Generating cat............");
+                createRandomCat();
+                System.out.println("You have a " + user.getCat().getBreed() + " cat!");
+            }
+
             gameMenu();
         } else {
             System.out.println("invalid input.............");
         }
     }
 
+    private boolean loadUser() {
+        try {
+            user = jsonReader.read();
+            System.out.println("Loaded game from " + JSON_STORE);
+            return true;
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+            return false;
+        }
+    }
+
     // EFFECTS: display ASCII cat art, game menu options
     private void displayGameMenu() {
-        drawCat(newCat.getBreed());
+        drawCat(user.getCat().getBreed());
         System.out.println("Feed..................[f]");
         System.out.println("Inventory.............[i]");
         System.out.println("Shop..................[s]");

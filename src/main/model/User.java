@@ -53,7 +53,7 @@ public class User implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("balance", myBalance);
+        json.put("Balance", myBalance);
         json.put("Inventory", foodsToJson());
         json.put("Cat", myPet.toJson());
         return json;
@@ -65,7 +65,6 @@ public class User implements Writable {
         for (Food f : inventory) {
             jsonArray.put(f.toJson());
         }
-
         return jsonArray;
     }
 
@@ -87,7 +86,7 @@ public class User implements Writable {
         return inventory;
     }
 
-    public Cat getMyPet() {
+    public Cat getCat() {
         return myPet;
     }
 

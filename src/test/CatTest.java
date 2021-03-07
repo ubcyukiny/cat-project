@@ -13,7 +13,7 @@ public class CatTest {
 
     @BeforeEach
     void runBefore(){
-        testCat = new Cat("Ragdoll");
+        testCat = new Cat("Ragdoll", 50 ,50, 50);
         testFood = new Food("test", 20, 5,-15,10);
         testMaxFood = new Food("MaxFood", 20, 55,55,55);
         testMinFood = new Food("MinFood", 20, -55,-55,-55);

@@ -52,10 +52,10 @@ public class UserTest {
     //addCat
     @Test
     void testAddCat() {
-        assertTrue(testUser.getMyPet() == null);
-        testCatToAdd = new Cat("Ragdoll");
+        assertTrue(testUser.getCat() == null);
+        testCatToAdd = new Cat("Ragdoll", 50 , 50, 50);
         testUser.addCat(testCatToAdd);
-        assertFalse( testUser.getMyPet() == null);
+        assertFalse( testUser.getCat() == null);
     }
 
     //removeFirstItem
