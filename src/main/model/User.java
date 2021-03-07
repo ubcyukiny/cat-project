@@ -4,8 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistance.Writable;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class User implements Writable {
 
@@ -17,6 +19,7 @@ public class User implements Writable {
     public User() {
         myBalance = 100;
         inventory = new LinkedList<>();
+        createRandomCat();
     }
 
     // EFFECTS: return true if balance >= price of Food object, false otherwise
@@ -57,6 +60,18 @@ public class User implements Writable {
         json.put("Inventory", foodsToJson());
         json.put("Cat", myPet.toJson());
         return json;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: randomly choose a breed from a list of two, initialize a cat with that breed and add it to user
+    private void createRandomCat() {
+        List<String> breedList = new ArrayList<>();
+        breedList.add("Ragdoll");
+        breedList.add("British Short hair");
+        Random randomizer = new Random();
+        String randomBreed = breedList.get(randomizer.nextInt(breedList.size()));
+        Cat cat = new Cat(randomBreed, 50, 50,50);
+        addCat(cat);
     }
 
     // EFFECTS: returns things in this workroom as a JSON array

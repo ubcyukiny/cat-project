@@ -1,3 +1,4 @@
+package model;
 
 import model.Food;
 import org.junit.jupiter.api.Test;

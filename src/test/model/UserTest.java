@@ -1,3 +1,5 @@
+package model;
+
 import model.Cat;
 import model.Food;
 import model.User;

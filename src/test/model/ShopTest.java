@@ -1,3 +1,5 @@
+package model;
+
 import model.Food;
 import model.Shop;
 import org.junit.jupiter.api.BeforeEach;

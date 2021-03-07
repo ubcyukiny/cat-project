@@ -1,0 +1,25 @@
+{
+  "Cat": {
+    "happiness": 50,
+    "energyLevel": 50,
+    "hungerLevel": 50,
+    "breed": "British Short hair"
+  },
+  "Balance": 100,
+  "Inventory": [
+    {
+      "addEnergyLevel": 30,
+      "price": 20,
+      "addHunger": 20,
+      "name": "Canned salmon",
+      "addHappiness": 20
+    },
+    {
+      "addEnergyLevel": 25,
+      "price": 25,
+      "addHunger": 25,
+      "name": "Diet food",
+      "addHappiness": -10
+    }
+  ]
+}

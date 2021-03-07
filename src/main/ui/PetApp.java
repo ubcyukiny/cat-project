@@ -27,7 +27,6 @@ public class PetApp {
     public PetApp() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        user = new User();
         shop = new Shop();
         cannedSalmon = new Food("Canned salmon", 20, 20, 30, 20);
         dryTreats = new Food("Dry Treats", 10, 15, 15, 10);
@@ -55,18 +54,6 @@ public class PetApp {
                 processFirstMenuCommand(nextMove);
             }
         }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: randomly choose a breed from a list of two, initialize a cat with that breed and add it to user
-    private void createRandomCat() {
-        List<String> breedList = new ArrayList<>();
-        breedList.add("Ragdoll");
-        breedList.add("British Short hair");
-        Random randomizer = new Random();
-        String randomBreed = breedList.get(randomizer.nextInt(breedList.size()));
-        Cat cat = new Cat(randomBreed, 50, 50,50);
-        user.addCat(cat);
     }
 
     // MODIFIES: this
@@ -214,7 +201,7 @@ public class PetApp {
         if (nextMove.equals("p")) {
             if (!loadUser()) {
                 System.out.println("Generating cat............");
-                createRandomCat();
+                user = new User();
                 System.out.println("You have a " + user.getCat().getBreed() + " cat!");
             }
 
