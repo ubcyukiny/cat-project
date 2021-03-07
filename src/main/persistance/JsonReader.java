@@ -61,7 +61,7 @@ public class JsonReader {
     }
 
     // MODIFIES: user
-    // EFFECTS: parses listof food from JSON object and adds them to user
+    // EFFECTS: parses list of food from JSON object and adds them to user
     private void addFoods(User user, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("Inventory");
         for (Object json : jsonArray) {

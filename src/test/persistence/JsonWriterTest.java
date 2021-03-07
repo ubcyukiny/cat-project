@@ -62,8 +62,6 @@ class JsonWriterTest extends JsonTest {
             writer.open();
             writer.write(user);
             writer.close();
-//             checkFood("Diet food", 25, -10, 25 ,25, inventory.get(0));
-//            checkFood("Canned salmon", 20, 20, 30, 20, inventory.get(1));
             JsonReader reader = new JsonReader("./data/testWriterNonemptyInventory.json");
             user = reader.read();
             assertEquals(100, user.getBalance());

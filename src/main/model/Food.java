@@ -4,8 +4,8 @@ import org.json.JSONObject;
 import persistance.Writable;
 
 public class Food implements Writable {
-    private final String name;
-    private final int price;
+    private String name;
+    private int price;
     private int addHappiness;
     private int addEnergyLevel;
     private int addHunger;
@@ -19,6 +19,7 @@ public class Food implements Writable {
         addEnergyLevel = energyBoost;
         addHunger = hungerBoost;
     }
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

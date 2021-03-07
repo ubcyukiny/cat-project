@@ -16,10 +16,10 @@ import java.util.*;
 public class PetApp {
     private static final String JSON_STORE = "./data/user.json";
     private User user;
-    private final Shop shop;
-    private final Food cannedSalmon;
-    private final Food dryTreats;
-    private final Food dietFood;
+    private Shop shop;
+    private Food cannedSalmon;
+    private Food dryTreats;
+    private Food dietFood;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 

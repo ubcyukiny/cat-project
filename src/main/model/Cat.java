@@ -2,18 +2,18 @@ package model;
 
 import org.json.JSONObject;
 import persistance.Writable;
-import java.time.LocalDate;
+
 
 public class Cat implements Writable {
-    public static final int maxLevel = 100;
-    public static final int minLevel = 0;
+    public static final int MAX_LEVEL = 100;
+    public static final int MIN_LEVEL = 0;
 
 
-    private String breed;
+    private final String breed;
     private int happiness;
     private int hungerLevel;
     private int energyLevel;
-    LocalDate date; // Create a date object
+
 
     // REQUIRES: breed has a non-zero length
     // EFFECTS: construct a cat, with this.breed set to breed(input),
@@ -37,23 +37,23 @@ public class Cat implements Writable {
     // MODIFIES: this
     // EFFECTS : adjust happiness, hungerLevel, energyLevel when outside minLevel or maxLevel
     public void levelCheck() {
-        if (happiness > maxLevel) {
-            happiness = maxLevel;
+        if (happiness > MAX_LEVEL) {
+            happiness = MAX_LEVEL;
         }
-        if (hungerLevel > maxLevel) {
-            hungerLevel = maxLevel;
+        if (hungerLevel > MAX_LEVEL) {
+            hungerLevel = MAX_LEVEL;
         }
-        if (energyLevel > maxLevel) {
-            energyLevel = maxLevel;
+        if (energyLevel > MAX_LEVEL) {
+            energyLevel = MAX_LEVEL;
         }
-        if (happiness < minLevel) {
-            happiness = minLevel;
+        if (happiness < MIN_LEVEL) {
+            happiness = MIN_LEVEL;
         }
-        if (hungerLevel < minLevel) {
-            hungerLevel = minLevel;
+        if (hungerLevel < MIN_LEVEL) {
+            hungerLevel = MIN_LEVEL;
         }
-        if (energyLevel < minLevel) {
-            energyLevel = minLevel;
+        if (energyLevel < MIN_LEVEL) {
+            energyLevel = MIN_LEVEL;
         }
     }
 
