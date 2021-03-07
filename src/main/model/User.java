@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistance.Writable;
+
 import java.util.LinkedList;
 import java.util.List;
 
-public class User {
+public class User implements Writable {
 
     private int myBalance;
     private List<Food> inventory;
@@ -43,6 +47,35 @@ public class User {
     // EFFECTS: remove first item in list (inventory)
     public void removeFirstItem() {
         inventory.remove(0);
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("balance", myBalance);
+        json.put("Inventory", foodsToJson());
+        json.put("Cat", myPet.toJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray foodsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Food f : inventory) {
+            jsonArray.put(f.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: setters
+    public void setBalance(int balance) {
+        myBalance = balance;
+    }
+
+    public void setInventory(List<Food> inventory) {
+        this.inventory = inventory;
     }
 
     // EFFECTS: getters

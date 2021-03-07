@@ -1,6 +1,9 @@
 package model;
 
-public class Food {
+import org.json.JSONObject;
+import persistance.Writable;
+
+public class Food implements Writable {
     private final String name;
     private final int price;
     private int addHappiness;
@@ -16,7 +19,16 @@ public class Food {
         addEnergyLevel = energyBoost;
         addHunger = hungerBoost;
     }
-
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("price", price);
+        json.put("addHappiness", addHappiness);
+        json.put("addEnergyLevel", addEnergyLevel);
+        json.put("addHunger", addHunger);
+        return json;
+    }
 
     //EFFECTS: getters
     public String getName() {

@@ -1,6 +1,9 @@
 package model;
 
-public class Cat {
+import org.json.JSONObject;
+import persistance.Writable;
+
+public class Cat implements Writable {
     public static final int maxLevel = 100;
     public static final int minLevel = 0;
 
@@ -50,6 +53,16 @@ public class Cat {
         if (energyLevel < minLevel) {
             energyLevel = minLevel;
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("breed", breed);
+        json.put("happiness", happiness);
+        json.put("hungerLevel", hungerLevel);
+        json.put("energyLevel", energyLevel);
+        return json;
     }
 
     // EFFECTS: getters

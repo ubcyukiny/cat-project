@@ -9,6 +9,7 @@ import model.User;
 import java.util.*;
 
 public class PetApp {
+    private static final String JSON_STORE = "./data/user.json";
     private final User user;
     private final Shop shop;
     private Cat newCat;
@@ -19,6 +20,7 @@ public class PetApp {
 
     // EFFECTS: initialize user and shop, add food objects to shop catalogue, then runs the Pet Game
     public PetApp() {
+
         user = new User();
         shop = new Shop();
         cannedSalmon = new Food("Canned salmon", 20, 20, 30, 20);

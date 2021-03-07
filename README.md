@@ -11,16 +11,24 @@ What this application can do:
 - Feed, play, chat with your cat using consumables! (**not fully implemented yet**)
 
 
-##User Stories
-- As a user, I want to be able to create my cat
+##User Stories P1
+- As a user, I want to be able to create my cat and add it to user 
 
-- As a user, I want to be able to buy food from shop
+- As a user, I want to be able to buy food from shop (adding multiple X to Y)
 
 - As a user, I want to be able to feed my cat using food bought from shop
 
 - As a user, I want to be able to check my Inventory
 
 - As a user, I want to be able to view my cat's status(happiness, hunger level, energy level)
+
+##User Stories P2
+- As a user, I want to be able to save my user data to file 
+
+- As a user, I want to be able to load my user data from file
+
+- As a user, I want to see more realism by adding time and stat decay in Cat
+
 
 
 
