@@ -3,7 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistance.Writable;
 
-
+// Represents a Cat object with breed and happiness, hunger level and energy level
 public class Cat implements Writable {
     public static final int MAX_LEVEL = 100;
     public static final int MIN_LEVEL = 0;

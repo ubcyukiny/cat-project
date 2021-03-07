@@ -5,13 +5,10 @@ import org.json.JSONObject;
 
 
 import java.io.*;
-//cited from JsonSerializationDemo
-// Represents a writer that writes JSON representation of User into a file
-
-import org.json.JSONObject;
-
 import java.io.PrintWriter;
 
+//cited from JsonSerializationDemo
+// Represents a writer that writes JSON representation of User into a file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;

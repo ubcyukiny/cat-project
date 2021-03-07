@@ -3,6 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistance.Writable;
 
+// Represent a Food object, having name, price, and stat boosts
 public class Food implements Writable {
     private String name;
     private int price;

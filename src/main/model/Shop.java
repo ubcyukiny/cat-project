@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+// Represent a shop of an array of foods, that can be purchased
 public class Shop {
     private ArrayList<Food> catalogue;
 

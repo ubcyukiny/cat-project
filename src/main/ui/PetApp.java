@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
-
+// Represents the Pet application
 public class PetApp {
     private static final String JSON_STORE = "./data/user.json";
     private User user;
@@ -57,7 +57,7 @@ public class PetApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: display game menu, process command
+    // EFFECTS: display game menu, process command, saves user file when quit
     private void gameMenu() {
         // FORMAT REFERENCE FROM BANK TELLER APP
         boolean menuRunning = true;
@@ -76,7 +76,7 @@ public class PetApp {
         }
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the User to file
     private void saveUser() {
         try {
             jsonWriter.open();
@@ -211,6 +211,8 @@ public class PetApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: load user from user.json file saved, return true if successful, false if unable to read
     private boolean loadUser() {
         try {
             user = jsonReader.read();

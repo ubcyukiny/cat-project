@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+// Represents the User, with balance, inventory and the cat associated
 public class User implements Writable {
 
     private int myBalance;

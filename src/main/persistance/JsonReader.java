@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static java.lang.Integer.parseInt;
 
 // Cited from JsonSerializationDemo
-
+// Represent a Reader that reads json file
 public class JsonReader {
     private String source;
 
