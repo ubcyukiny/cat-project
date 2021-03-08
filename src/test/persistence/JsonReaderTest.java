@@ -32,7 +32,7 @@ class JsonReaderTest extends JsonTest {
             User user = reader.read();
             assertEquals(100, user.getBalance());
             assertEquals(0, user.getInventory().size());
-            assertTrue(LocalDate.now().toString().equals(user.getLastLoginString()));
+            assertTrue("2021-03-07".equals(user.getLastLoginString()));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -46,7 +46,7 @@ class JsonReaderTest extends JsonTest {
             assertEquals(100, user.getBalance());
             List<Food> inventory = user.getInventory();
             assertEquals(2, inventory.size());
-            assertTrue(LocalDate.now().toString().equals(user.getLastLoginString()));
+            assertTrue("2021-03-07".equals(user.getLastLoginString()));
             checkFood("Canned salmon", 20, 20, 30, 20, inventory.get(0));
             checkFood("Diet food", 25, -10, 25 ,25, inventory.get(1));
         } catch (IOException e) {
