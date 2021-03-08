@@ -28,18 +28,20 @@ public class User implements Writable {
     }
 
 
-    // TODO add abstractions
+    // MODIFIES: this, myPet
+    // EFFECTS: calculate days between lastLogin and current game session date, and decay user's myPet stat
     public void statDecay() {
         // current days - past days
         LocalDate currentLogin = LocalDate.now();
         int differenceInDays = currentLogin.getDayOfYear() - lastLogin.getDayOfYear();
+        // change myPet's stat
         myPet.setHappiness(myPet.getHappiness() - differenceInDays * Cat.DECAY_PER_DAY);
         myPet.setHungerLevel(myPet.getHungerLevel() - differenceInDays * Cat.DECAY_PER_DAY);
         myPet.setEnergyLevel(myPet.getEnergyLevel() - differenceInDays * Cat.DECAY_PER_DAY);
     }
 
 
-    // TODO ADD ABSTRACTIONS
+    // MODIFIES: this
     // EFFECTS: set last login
     public void saveLastLogin() {
         LocalDate currentDate = LocalDate.now();
@@ -79,6 +81,7 @@ public class User implements Writable {
 
 
     @Override
+    // returns json file with user's field and data
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("Balance", myBalance);

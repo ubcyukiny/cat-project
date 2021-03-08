@@ -219,7 +219,7 @@ public class PetApp {
         try {
             user = jsonReader.read();
             System.out.println("Loaded game from " + JSON_STORE);
-            // ADDED TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // after user is loaded, calculate the stat decay
             user.statDecay();
             return true;
         } catch (IOException e) {
