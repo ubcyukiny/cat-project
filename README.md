@@ -24,9 +24,11 @@ What this application can do:
 
 ##User Stories P2
 - As a user, I want to be able to save my user data to file 
+    (saved automatically when quitting game)
 
 - As a user, I want to be able to load my user data from file
-
+    (loaded automatically when start up game)
+    
 - As a user, I want to see more realism by adding time and stat decay in Cat...
 
 
