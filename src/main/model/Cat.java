@@ -60,7 +60,9 @@ public class Cat implements Writable {
     }
 
 
+
     @Override
+    // EFFECTS: return a json file with Cat's field
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("breed", breed);

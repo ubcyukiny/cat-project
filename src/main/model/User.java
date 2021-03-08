@@ -100,7 +100,7 @@ public class User implements Writable {
         addCat(cat);
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns foods in this USER as a JSON array
     private JSONArray foodsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Food f : inventory) {

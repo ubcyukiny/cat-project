@@ -22,6 +22,7 @@ public class Food implements Writable {
     }
 
     @Override
+    // EFFECTS: return json file with Food's field
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
