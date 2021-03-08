@@ -27,7 +27,7 @@ What this application can do:
 
 - As a user, I want to be able to load my user data from file
 
-- As a user, I want to see more realism by adding time and stat decay in Cat
+- As a user, I want to see more realism by adding time and stat decay in Cat...
 
 
 
