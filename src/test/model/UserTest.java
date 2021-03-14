@@ -28,7 +28,7 @@ public class UserTest {
     @Test
     void testConstructor() {
         assertEquals(100, testUser.getBalance());
-        assertFalse( testUser.getInventory() == null);
+        assertFalse(testUser.getInventory() == null);
     }
 
     // test can purchase
@@ -41,6 +41,7 @@ public class UserTest {
         assertTrue(testUser.canPurchase(testFoodCanBuy));
         assertFalse(testUser.canPurchase(testFoodCantBuy));
     }
+
     @Test
     void testAddItem() {
         testFood1 = new Food("testFood1",
@@ -56,7 +57,7 @@ public class UserTest {
     //addCat
     @Test
     void testAddCat() {
-        testCatToAdd = new Cat("Ragdoll", 50 , 50, 50);
+        testCatToAdd = new Cat("Ragdoll", 50, 50, 50);
         testUser.addCat(testCatToAdd);
         assertTrue(testUser.getCat().equals(testCatToAdd));
     }
@@ -78,7 +79,37 @@ public class UserTest {
     }
 
     @Test
+        //     public void statDecay() {
+        //        // current days - past days
+        //        LocalDate currentLogin = LocalDate.now();
+        //        int differenceInDays = currentLogin.getDayOfYear() - lastLogin.getDayOfYear();
+        //        myPet.setHappiness(myPet.getHappiness() - differenceInDays * Cat.DECAY_PER_DAY);
+        //        myPet.setHungerLevel(myPet.getHungerLevel() - differenceInDays * Cat.DECAY_PER_DAY);
+        //        myPet.setEnergyLevel(myPet.getEnergyLevel() - differenceInDays * Cat.DECAY_PER_DAY);
+        //    }
+    void testStatDecay() {
+        // user last login date will be 1 day behind LocalDate.now()
+        testUser = new User(LocalDate.now().minusDays(1).toString());
+        // now add cat to user, stats are 50,50,50
+        testAddCat();
+        assertEquals(testUser.getCat().getHungerLevel(), 50);
+        assertEquals(testUser.getCat().getHappiness(), 50);
+        assertEquals(testUser.getCat().getEnergyLevel(), 50);
+        testUser.statDecay();
+        assertEquals(testUser.getCat().getHungerLevel(), 50 - Cat.DECAY_PER_DAY);
+        assertEquals(testUser.getCat().getHappiness(), 50 - Cat.DECAY_PER_DAY);
+        assertEquals(testUser.getCat().getEnergyLevel(), 50 - Cat.DECAY_PER_DAY);
+    }
 
     @Test
+    void testSaveLastLogin() {
+        // user last login date will be 1 day behind LocalDate.now()
+        testUser = new User(LocalDate.now().minusDays(1).toString());
+        assertTrue(testUser.getLastLoginString().equals(LocalDate.now().minusDays(1).toString()));
+        // save last login date to current day
+        testUser.saveLastLogin();
+        assertTrue(testUser.getLastLoginString().equals(LocalDate.now().toString()));
+    }
 
 }
+
