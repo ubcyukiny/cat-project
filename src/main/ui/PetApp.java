@@ -10,6 +10,7 @@ import persistance.JsonReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 // Represents the Pet application
@@ -66,6 +67,7 @@ public class PetApp {
             Scanner input = new Scanner(System.in);
             String nextMove = input.nextLine();
             if (nextMove.equals("q")) {
+                user.saveLastLogin();
                 saveUser();
                 System.exit(0);
 
@@ -201,7 +203,7 @@ public class PetApp {
         if (nextMove.equals("p")) {
             if (!loadUser()) {
                 System.out.println("Generating cat............");
-                user = new User();
+                user = new User(LocalDate.now().toString());
                 System.out.println("You have a " + user.getCat().getBreed() + " cat!");
             }
 
@@ -217,6 +219,8 @@ public class PetApp {
         try {
             user = jsonReader.read();
             System.out.println("Loaded game from " + JSON_STORE);
+            // ADDED TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            user.statDecay();
             return true;
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);

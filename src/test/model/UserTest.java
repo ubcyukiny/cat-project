@@ -6,6 +6,8 @@ import model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +22,7 @@ public class UserTest {
 
     @BeforeEach
     void setup() {
-        testUser = new User();
+        testUser = new User(LocalDate.now().toString());
     }
 
     @Test
@@ -54,10 +56,9 @@ public class UserTest {
     //addCat
     @Test
     void testAddCat() {
-        assertTrue(testUser.getCat() == null);
         testCatToAdd = new Cat("Ragdoll", 50 , 50, 50);
         testUser.addCat(testCatToAdd);
-        assertFalse( testUser.getCat() == null);
+        assertTrue(testUser.getCat().equals(testCatToAdd));
     }
 
     //removeFirstItem
@@ -75,5 +76,9 @@ public class UserTest {
         assertTrue(testUser.getInventory().get(0).equals(testFoodCanBuy)); // remaining now become first in list
 
     }
+
+    @Test
+
+    @Test
 
 }

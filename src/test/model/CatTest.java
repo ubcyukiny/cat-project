@@ -55,4 +55,24 @@ public class CatTest {
         assertEquals(0,testCat.getEnergyLevel());
         assertEquals(0,testCat.getHungerLevel());
     }
+
+    @Test
+    void testSetEnergyLevel(){
+        assertEquals(testCat.getEnergyLevel(), 50);
+        testCat.setEnergyLevel(100);
+        assertEquals(testCat.getEnergyLevel(), 100);
+    }
+
+    @Test
+    void testSetHappiness() {
+        assertEquals(testCat.getHappiness(), 50);
+        testCat.setHappiness(100);
+        assertEquals(testCat.getHappiness(), 100);
+    }
+    @Test
+    void testSetHungerLevel() {
+        assertEquals(testCat.getHungerLevel(), 50);
+        testCat.setHungerLevel(100);
+        assertEquals(testCat.getHungerLevel(), 100);
+    }
 }

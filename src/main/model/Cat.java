@@ -3,11 +3,13 @@ package model;
 import org.json.JSONObject;
 import persistance.Writable;
 
+import java.time.*;
+
 // Represents a Cat object with breed and happiness, hunger level and energy level
 public class Cat implements Writable {
     public static final int MAX_LEVEL = 100;
     public static final int MIN_LEVEL = 0;
-
+    public static final int DECAY_PER_DAY = 5;
 
     private final String breed;
     private int happiness;
@@ -58,7 +60,6 @@ public class Cat implements Writable {
     }
 
 
-
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -67,6 +68,19 @@ public class Cat implements Writable {
         json.put("hungerLevel", hungerLevel);
         json.put("energyLevel", energyLevel);
         return json;
+    }
+
+    // EFFECTS: setters
+    public void setEnergyLevel(int energyLevel) {
+        this.energyLevel = energyLevel;
+    }
+
+    public void setHappiness(int happiness) {
+        this.happiness = happiness;
+    }
+
+    public void setHungerLevel(int hungerLevel) {
+        this.hungerLevel = hungerLevel;
     }
 
     // EFFECTS: getters

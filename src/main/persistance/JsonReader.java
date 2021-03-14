@@ -46,8 +46,8 @@ public class JsonReader {
 
     // EFFECTS: parses User from JSON object and returns it
     private User parseUser(JSONObject jsonObject) {
-
-        User user = new User();
+        String lastLogin = (jsonObject.getString("Time"));
+        User user = new User(lastLogin);
         user.setBalance(jsonObject.getInt("Balance"));
         // retrieve inventory
         addFoods(user, jsonObject);

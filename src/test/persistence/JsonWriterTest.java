@@ -9,6 +9,7 @@ import persistance.JsonReader;
 import persistance.JsonWriter;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterInvalidFile() {
         try {
-            User user = new User();
+            User user = new User(LocalDate.now().toString());
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
@@ -33,7 +34,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyInventory() {
         try {
-            User user = new User();
+            User user = new User(LocalDate.now().toString());
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyInventory.json");
             writer.open();
             writer.write(user);
@@ -51,7 +52,7 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterNonemptyInventory() {
         try {
-            User user = new User();
+            User user = new User(LocalDate.now().toString());
             List<Food> inventory = new LinkedList<>();
             inventory.add(new Food("Diet food", 25, -10, 25, 25));
             inventory.add(new Food ("Canned salmon", 20 ,20, 30, 20));

@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistance.Writable;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,13 +16,36 @@ public class User implements Writable {
     private int myBalance;
     private List<Food> inventory;
     private Cat myPet;
+    private LocalDate lastLogin;
 
     // EFFECTS: construct a user, with balance starting at 100, initialize inventory as list of Food objects
-    public User() {
+    public User(String date) {
+        //     "Time": "2021-03-07"
         myBalance = 100;
         inventory = new LinkedList<>();
         createRandomCat();
+        lastLogin = LocalDate.parse(date);
     }
+
+
+    // TODO add abstractions
+    public void statDecay() {
+        // current days - past days
+        LocalDate currentLogin = LocalDate.now();
+        int differenceInDays = currentLogin.getDayOfYear() - lastLogin.getDayOfYear();
+        myPet.setHappiness(myPet.getHappiness() - differenceInDays * Cat.DECAY_PER_DAY);
+        myPet.setHungerLevel(myPet.getHungerLevel() - differenceInDays * Cat.DECAY_PER_DAY);
+        myPet.setEnergyLevel(myPet.getEnergyLevel() - differenceInDays * Cat.DECAY_PER_DAY);
+    }
+
+
+    // TODO ADD ABSTRACTIONS
+    // EFFECTS: set last login
+    public void saveLastLogin() {
+        LocalDate currentDate = LocalDate.now();
+        lastLogin = currentDate;
+    }
+
 
     // EFFECTS: return true if balance >= price of Food object, false otherwise
     public boolean canPurchase(Food item) {
@@ -60,6 +84,7 @@ public class User implements Writable {
         json.put("Balance", myBalance);
         json.put("Inventory", foodsToJson());
         json.put("Cat", myPet.toJson());
+        json.put("Time", lastLogin.toString());
         return json;
     }
 
@@ -71,7 +96,7 @@ public class User implements Writable {
         breedList.add("British Short hair");
         Random randomizer = new Random();
         String randomBreed = breedList.get(randomizer.nextInt(breedList.size()));
-        Cat cat = new Cat(randomBreed, 50, 50,50);
+        Cat cat = new Cat(randomBreed, 50, 50, 50);
         addCat(cat);
     }
 
@@ -106,5 +131,8 @@ public class User implements Writable {
         return myPet;
     }
 
+    public String getLastLoginString() {
+        return lastLogin.toString();
+    }
 
 }
