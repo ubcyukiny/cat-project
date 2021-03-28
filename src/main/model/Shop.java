@@ -9,7 +9,7 @@ public class Shop {
     private Food dryTreats = new Food("Dry Treats", 10, 15, 15, 10);
     private Food dietFood = new Food("Diet food", 25, -10, 25, 25);
 
-    // EFFECTS: initialize a list with food objects
+    // EFFECTS: initialize a list 3 food objects
     public Shop() {
         catalogue = new ArrayList<>();
         addItems(cannedSalmon);
@@ -35,6 +35,7 @@ public class Shop {
         return catalogue.size();
     }
 
+    // Getters for food
     public Food getCannedSalmon() {
         return cannedSalmon;
     }

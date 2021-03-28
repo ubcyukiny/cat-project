@@ -71,6 +71,7 @@ public class Cat implements Writable {
         return json;
     }
 
+    // EFFECTS: return a string of summary of cat stats
     public String printSummary() {
         String output = "<html>" + "Breed: " + breed + "<br />" + "Happiness: " + happiness + "<br />"
                 + "Hunger Level: " + hungerLevel + "<br />" + "Energy: " + energyLevel;

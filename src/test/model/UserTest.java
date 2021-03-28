@@ -27,7 +27,7 @@ public class UserTest {
 
     @Test
     void testConstructor() {
-        assertEquals(100, testUser.getBalance());
+        assertEquals(500, testUser.getBalance());
         assertFalse(testUser.getInventory() == null);
     }
 
@@ -47,9 +47,9 @@ public class UserTest {
         testFood1 = new Food("testFood1",
                 20, 20, 20, 20);
         assertEquals(0, testUser.getInventory().size());
-        assertEquals(100, testUser.getBalance());
+        assertEquals(500, testUser.getBalance());
         testUser.addItem(testFood1);
-        assertEquals(100 - testFood1.getPrice(), testUser.getBalance());
+        assertEquals(500 - testFood1.getPrice(), testUser.getBalance());
         assertEquals(1, testUser.getInventory().size());
 
     }

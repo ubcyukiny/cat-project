@@ -127,6 +127,7 @@ public class User implements Writable {
         }
     }
 
+    // EFFECTS: return a string of item summary
     public String itemSummary() {
         if (inventory.size() == 0) {
             return "You don't have anything in your inventory!";

@@ -5,10 +5,10 @@
 I played *Neopets* and *Pet Society* when I was young, and I wanted to recreate a virtual model.pet game for this project.
 
 What this application can do:
-- Login using your own username (**not implemented yet**)
-- Create a cat, and associate with the user account (**not implemented yet**)
+- Login using your own username (**changed to auto save and auto load**)
+- Create a cat, and associate with the user account 
 - Buy consumables from shop
-- Feed, play, chat with your cat using consumables! (**not fully implemented yet**)
+- Feed, play, with your cat using consumables!
 
 
 ##User Stories P1
@@ -32,6 +32,11 @@ What this application can do:
 - As a user, I want to see more realism by adding time and stat decay in Cat...
 
 ##User Stories P3
+- Can Feed, Purchase Food, and View Food in Gui
 
+- When auto save, or load, pop up message will indicate saving from "./data/user.json" or not found
+    status change and persistance cant be found in status panel
+    
+- When cat happiness reaches >= 70 or >= 90, new cat icons will appear and replacce old
 
 

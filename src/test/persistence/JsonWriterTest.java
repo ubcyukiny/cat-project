@@ -42,7 +42,7 @@ class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyInventory.json");
             user = reader.read();
-            assertEquals(100, user.getBalance());
+            assertEquals(500, user.getBalance());
             assertEquals(0, user.getInventory().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -63,12 +63,11 @@ class JsonWriterTest extends JsonTest {
             writer.close();
             JsonReader reader = new JsonReader("./data/testWriterNonemptyInventory.json");
             user = reader.read();
-            assertEquals(100, user.getBalance());
+            assertEquals(500, user.getBalance());
             List<Food> foods = user.getInventory();
             assertEquals(2, foods.size());
             checkFood("Diet food", 25, -10, 25 ,25, inventory.get(0));
             checkFood("Canned salmon", 20, 20, 30, 20, inventory.get(1));
-
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

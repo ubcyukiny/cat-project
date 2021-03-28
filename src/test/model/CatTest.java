@@ -75,4 +75,12 @@ public class CatTest {
         testCat.setHungerLevel(100);
         assertEquals(testCat.getHungerLevel(), 100);
     }
+
+    @Test
+    void testPrintSummary() {
+    String output = "<html>" + "Breed: " + testCat.getBreed() + "<br />" + "Happiness: " + testCat.getHappiness()
+            + "<br />" + "Hunger Level: " + testCat.getHungerLevel() + "<br />" + "Energy: " + testCat.getEnergyLevel();
+    assertEquals(testCat.printSummary(), output);
+    }
+
 }

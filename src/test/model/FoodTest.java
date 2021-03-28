@@ -18,4 +18,5 @@ public class FoodTest {
         assertEquals(10, testFood.getAddHunger());
 
     }
+
 }

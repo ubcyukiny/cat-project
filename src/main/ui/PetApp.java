@@ -380,6 +380,7 @@ public class PetApp extends JFrame implements ActionListener {
     private void playResponse() {
         if (!loadUser()) {
             user = new User(LocalDate.now().toString());
+            JOptionPane.showMessageDialog(null, "GENERATING NEW SAVE");
         }
         initializeMainGameFrame();
     }

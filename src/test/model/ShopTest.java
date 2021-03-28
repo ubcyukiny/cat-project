@@ -5,9 +5,7 @@ import model.Shop;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ShopTest {
     private Shop testFoods;
@@ -26,20 +24,21 @@ public class ShopTest {
 
     @Test
     void testGetFoods() {
-        //testFood should be empty and initialized not null
+        //testFood should be size of 3 and initialized not null
         assertFalse(testFoods.getCatalogue() == null);
+        assertTrue(testFoods.getCatalogue().size() == 3);
     }
 
     @Test
     void testGetSize() {
-        assertEquals(0, testFoods.getSize());
+        assertEquals(3, testFoods.getSize());
     }
 
     @Test
     void testAddItem(){
-        assertEquals(0, testFoods.getSize());
+        assertEquals(3, testFoods.getSize());
         testFoods.addItems(testFood);
-        assertEquals(1, testFoods.getSize());
+        assertEquals(4, testFoods.getSize());
     }
 
 }
