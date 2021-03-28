@@ -1,6 +1,6 @@
 package ui;
 
-import apple.laf.JRSUIUtils;
+import ui.PetApp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,10 @@ import java.awt.event.ActionListener;
 public class Gui extends JFrame implements ActionListener {
     private JFrame frame;
     private JFrame mainGameFrame;
+    private JFrame catMenu;
+
     private JLabel label;
+
     private JButton play;
     private JButton save;
     private JButton load;
@@ -71,16 +74,20 @@ public class Gui extends JFrame implements ActionListener {
             initializeMainGameFrame();
         }
         if (e.getSource() == quit) {
-            // quit application
+            // quit application AND SAVES !!!
+            // TODO SAVES
             System.exit(0);
         }
         if (e.getSource() == cat) {
             // TODO jump to cat screen, view stats
+            mainGameFrame.setVisible(false);
+            mainGameFrame.dispose();
+            initializeCatMenu();
         }
         if (e.getSource() == save) {
             // TODO initialize save, pops up message
         }
-        if (e.getSource() == load ) {
+        if (e.getSource() == load) {
             // TODO initialize load
         }
         if (e.getSource() == shop) {
@@ -91,6 +98,19 @@ public class Gui extends JFrame implements ActionListener {
         }
     }
 
+    public void initializeCatMenu() {
+        catMenu = new JFrame();
+        catMenu.setTitle("Cat Menu");
+        catMenu.setSize(500, 500);
+        catMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        catMenu.setResizable(false);
+        catMenu.setVisible(true);
+        // add display panel for stats
+
+        // add quit button
+        catMenu.add(quit, BorderLayout.SOUTH);
+    }
+
     public void initializeMainGameFrame() {
         mainGameFrame = new JFrame();
         mainGameFrame.setTitle("Virtual Cat Game");
@@ -99,9 +119,8 @@ public class Gui extends JFrame implements ActionListener {
         mainGameFrame.setResizable(false);
         // add cat pictures
         // from http://clipart-library.com/clipart/Lcd5aX5xi.htm
-        // set pannels for current save status pannel, game and buttons
+        // set panels for current save status panel, game and buttons
         // add buttons
-
         initializeCatImage();
         initializeButtonsForGame();
         // add messages, displays save data file
@@ -132,6 +151,11 @@ public class Gui extends JFrame implements ActionListener {
         shop = new JButton("SHOP");
         save = new JButton("SAVE");
         load = new JButton("LOAD");
+        cat.addActionListener(this);
+        items.addActionListener(this);
+        shop.addActionListener(this);
+        save.addActionListener(this);
+        load.addActionListener(this);
         buttons.add(cat);
         buttons.add(items);
         buttons.add(shop);

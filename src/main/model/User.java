@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistance.Writable;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -111,6 +112,30 @@ public class User implements Writable {
             jsonArray.put(f.toJson());
         }
         return jsonArray;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add Food object f into user u's inventory,
+    // user u's balance will be deducted by food f's price
+    public void purchase(Food f) {
+        if (canPurchase(f)) {
+            addItem(f);
+            JOptionPane.showMessageDialog(null, f.getName() + " added to your inventory");
+        } else {
+            JOptionPane.showMessageDialog(null, "Insufficient Balance!");
+        }
+    }
+
+    public String itemSummary() {
+        if (inventory.size() == 0) {
+            return "You don't have anything in your inventory!";
+        } else {
+            String output = "";
+            for (Food f : inventory) {
+                output = output + "a " + f.getName() + ", ";
+            }
+            return "You have " + output + "I think.";
+        }
     }
 
     // EFFECTS: setters

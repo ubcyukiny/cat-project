@@ -60,7 +60,6 @@ public class Cat implements Writable {
     }
 
 
-
     @Override
     // EFFECTS: return a json file with Cat's field
     public JSONObject toJson() {
@@ -70,6 +69,12 @@ public class Cat implements Writable {
         json.put("hungerLevel", hungerLevel);
         json.put("energyLevel", energyLevel);
         return json;
+    }
+
+    public String printSummary() {
+        String output = "<html>" + "Breed: " + breed + "<br />" + "Happiness: " + happiness + "<br />"
+                + "Hunger Level: " + hungerLevel + "<br />" + "Energy: " + energyLevel;
+        return output;
     }
 
     // EFFECTS: setters
