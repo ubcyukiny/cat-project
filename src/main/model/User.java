@@ -22,7 +22,7 @@ public class User implements Writable {
     // EFFECTS: construct a user, with balance starting at 100, initialize inventory as list of Food objects
     public User(String date) {
         //     "Time": "2021-03-07"
-        myBalance = 100;
+        myBalance = 500;
         inventory = new LinkedList<>();
         createRandomCat();
         lastLogin = LocalDate.parse(date);
@@ -121,6 +121,7 @@ public class User implements Writable {
         if (canPurchase(f)) {
             addItem(f);
             JOptionPane.showMessageDialog(null, f.getName() + " added to your inventory");
+            JOptionPane.showMessageDialog(null, "Remaining balance: " + getBalance());
         } else {
             JOptionPane.showMessageDialog(null, "Insufficient Balance!");
         }
