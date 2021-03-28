@@ -33,6 +33,7 @@ public class User implements Writable {
     public void statDecay() {
         // current days - past days
         LocalDate currentLogin = LocalDate.now();
+        // TODO NOT ROBUST, only works in same year
         int differenceInDays = currentLogin.getDayOfYear() - lastLogin.getDayOfYear();
         // change myPet's stat
         myPet.setHappiness(myPet.getHappiness() - differenceInDays * Cat.DECAY_PER_DAY);
@@ -42,7 +43,7 @@ public class User implements Writable {
 
 
     // MODIFIES: this
-    // EFFECTS: set last login
+    // EFFECTS: set last login as current time
     public void saveLastLogin() {
         LocalDate currentDate = LocalDate.now();
         lastLogin = currentDate;

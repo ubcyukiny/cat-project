@@ -56,6 +56,7 @@ public class JsonReader {
         JSONObject catJsonObject = jsonObject.getJSONObject("Cat");
         Cat cat = new Cat(catJsonObject.getString("breed"), catJsonObject.getInt("happiness"),
                 catJsonObject.getInt("hungerLevel"), catJsonObject.getInt("energyLevel"));
+        // set cat would be better name
         user.addCat(cat);
         return user;
     }
