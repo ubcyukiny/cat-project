@@ -43,7 +43,11 @@ What this application can do:
 - Task 2: Make appropriate use of a bi-directional association somewhere in your code. 
 
     I have added a bi-directional association between Class Cat and User, when user addCat to his field, cat will also
-    add user to owner. The method is addCat(Cat cat) in model.User and addOwner(User user) in model.Cat
+    add user to owner. The method is addCat(Cat cat) in model.User and addOwner(User user) in model.Cat. Check is 
+    implemented to guard against potential infinite loop, user.addCat(cat) will have a check if myPet.equals(cat), same for
+    cat.addOwner(user). Intelij generated override equals and hashcode for both classes.  
+    
+    
 
 - Task 3: 
 I would separate PetApp (Game logic) and the GUI, and make a new class called GUI, because of the Single Responsibility

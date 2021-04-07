@@ -41,4 +41,5 @@ public class ShopTest {
         assertEquals(4, testFoods.getSize());
     }
 
+
 }

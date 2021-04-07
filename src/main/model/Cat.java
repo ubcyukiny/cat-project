@@ -30,7 +30,8 @@ public class Cat implements Writable {
         this.energyLevel = energyLevel;
     }
 
-    // TODO BIDIRECTIONAL
+    // MODIFIES: this, user
+    // EFFECTS: set myOwner to user, user setCat to this
     public void addOwner(User user) {
         if (isNull(owner) || !owner.equals(user)) {
             owner = user;
@@ -38,6 +39,7 @@ public class Cat implements Writable {
         }
     }
 
+    // EFFECTS: return true if cat's happiness, hungerlevel, energyLevel and breed is same, same class or same object
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -61,6 +63,7 @@ public class Cat implements Writable {
         return breed.equals(cat.breed);
     }
 
+    // EFFECTS: return a hashcode integer
     @Override
     public int hashCode() {
         int result = breed.hashCode();

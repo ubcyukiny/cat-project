@@ -111,5 +111,20 @@ public class UserTest {
         assertTrue(testUser.getLastLoginString().equals(LocalDate.now().toString()));
     }
 
+    /*
+    @Test
+    void testItemSummary() {}
+
+    @Test
+    void testEquals() {}
+
+    @Test
+    void testHashCode() {}
+
+    @Test
+    void testPurchase() {}
+
+     */
+
 }
 

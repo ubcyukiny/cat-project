@@ -68,9 +68,8 @@ public class User implements Writable {
         myBalance -= item.getPrice();
     }
 
-    // MODIFIES: this
-    // EFFECTS: set myPet to cat(input)
-    // TODO ADDED FUNCTIONALITY
+    // MODIFIES: this, cat
+    // EFFECTS: set myPet to cat(input), cat set owner to this
     public void addCat(Cat cat) {
         if (isNull(myPet) || !myPet.equals(cat)) {
             myPet = cat;
@@ -78,6 +77,8 @@ public class User implements Writable {
         }
     }
 
+
+    // EFFECTS: return true if, same object, same class, same balance, same inventory and same lastLogin date
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -98,6 +99,7 @@ public class User implements Writable {
         return lastLogin.equals(user.lastLogin);
     }
 
+    // EFFECTS: return a hashCode integer about User
     @Override
     public int hashCode() {
         int result = myBalance;

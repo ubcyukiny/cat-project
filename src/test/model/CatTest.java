@@ -81,4 +81,15 @@ public class CatTest {
     assertEquals(testCat.returnSummary(), output);
     }
 
+    /*
+    @Test
+    void testHashCode() {}
+
+    @Test
+    void testEquals() {}
+
+    @Test
+    void testAddOwner() {}
+
+     */
 }
