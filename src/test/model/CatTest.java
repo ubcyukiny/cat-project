@@ -1,7 +1,5 @@
 package model;
 
-import model.Cat;
-import model.Food;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +30,7 @@ public class CatTest {
     //test feed
     @Test
     void testFeed() {
-        testCat.feed(testFood);
+        testCat.eat(testFood);
         assertEquals(55, testCat.getHappiness());
         assertEquals(35, testCat.getEnergyLevel());
         assertEquals(60, testCat.getHungerLevel());
@@ -41,7 +39,7 @@ public class CatTest {
     //test max level check
     @Test
     void  testLevelCheckMax() {
-        testCat.feed(testMaxFood);
+        testCat.eat(testMaxFood);
         assertEquals(100, testCat.getHappiness());
         assertEquals(100,testCat.getEnergyLevel());
         assertEquals(100,testCat.getHungerLevel());
@@ -50,7 +48,7 @@ public class CatTest {
     //test min level check
     @Test
     void  testLevelCheckMin() {
-        testCat.feed(testMinFood);
+        testCat.eat(testMinFood);
         assertEquals(0, testCat.getHappiness());
         assertEquals(0,testCat.getEnergyLevel());
         assertEquals(0,testCat.getHungerLevel());
@@ -80,7 +78,7 @@ public class CatTest {
     void testPrintSummary() {
     String output = "<html>" + "Breed: " + testCat.getBreed() + "<br />" + "Happiness: " + testCat.getHappiness()
             + "<br />" + "Hunger Level: " + testCat.getHungerLevel() + "<br />" + "Energy: " + testCat.getEnergyLevel();
-    assertEquals(testCat.printSummary(), output);
+    assertEquals(testCat.returnSummary(), output);
     }
 
 }

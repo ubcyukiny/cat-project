@@ -5,12 +5,15 @@ import persistance.Writable;
 
 import java.time.*;
 
+import static java.util.Objects.isNull;
+
 // Represents a Cat object with breed and happiness, hunger level and energy level
 public class Cat implements Writable {
     public static final int MAX_LEVEL = 100;
     public static final int MIN_LEVEL = 0;
     public static final int DECAY_PER_DAY = 5;
 
+    private User owner;
     private final String breed;
     private int happiness;
     private int hungerLevel;
@@ -27,9 +30,49 @@ public class Cat implements Writable {
         this.energyLevel = energyLevel;
     }
 
+    // TODO BIDIRECTIONAL
+    public void addOwner(User user) {
+        if (isNull(owner) || !owner.equals(user)) {
+            owner = user;
+            user.addCat(this);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Cat cat = (Cat) o;
+
+        if (happiness != cat.happiness) {
+            return false;
+        }
+        if (hungerLevel != cat.hungerLevel) {
+            return false;
+        }
+        if (energyLevel != cat.energyLevel) {
+            return false;
+        }
+        return breed.equals(cat.breed);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = breed.hashCode();
+        result = 31 * result + happiness;
+        result = 31 * result + hungerLevel;
+        result = 31 * result + energyLevel;
+        return result;
+    }
+
     // MODIFIES: this
     // EFFECTS: change happiness, hungerLevel, energyLevel, according to food(input)'s attributes
-    public void feed(Food food) {
+    public void eat(Food food) {
         happiness += food.getAddHappiness();
         hungerLevel += food.getAddHunger();
         energyLevel += food.getAddEnergyLevel();
@@ -72,7 +115,7 @@ public class Cat implements Writable {
     }
 
     // EFFECTS: return a string of summary of cat stats
-    public String printSummary() {
+    public String returnSummary() {
         String output = "<html>" + "Breed: " + breed + "<br />" + "Happiness: " + happiness + "<br />"
                 + "Hunger Level: " + hungerLevel + "<br />" + "Energy: " + energyLevel;
         return output;

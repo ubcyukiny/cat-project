@@ -34,9 +34,9 @@ What this application can do:
 ##User Stories P3
 - Can Feed, Purchase Food, and View Food in Gui
 
-- When auto save, or load, pop up message will indicate saving from "./data/user.json" or not found
+- When auto save, or load, pop up message will indicate saving to/from "./data/user.json" or not found
     status change and persistance cant be found in status panel
     
-- When cat happiness reaches >= 70 or >= 90, new cat icons will appear and replacce old
+- When cat happiness reaches >= 70 or >= 90, new cat icons will appear and replace old
 
 

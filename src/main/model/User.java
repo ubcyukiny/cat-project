@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import static java.util.Objects.isNull;
+
 // Represents the User, with balance, inventory and the cat associated
 public class User implements Writable {
 
@@ -21,10 +23,9 @@ public class User implements Writable {
 
     // EFFECTS: construct a user, with balance starting at 100, initialize inventory as list of Food objects
     public User(String date) {
-        //     "Time": "2021-03-07"
         myBalance = 500;
         inventory = new LinkedList<>();
-        createRandomCat();
+        addCat(createRandomCat());
         lastLogin = LocalDate.parse(date);
     }
 
@@ -34,7 +35,6 @@ public class User implements Writable {
     public void statDecay() {
         // current days - past days
         LocalDate currentLogin = LocalDate.now();
-        // TODO NOT ROBUST, only works in same year
         int differenceInDays = currentLogin.getDayOfYear() - lastLogin.getDayOfYear();
         // change myPet's stat
         myPet.setHappiness(myPet.getHappiness() - differenceInDays * Cat.DECAY_PER_DAY);
@@ -70,8 +70,40 @@ public class User implements Writable {
 
     // MODIFIES: this
     // EFFECTS: set myPet to cat(input)
+    // TODO ADDED FUNCTIONALITY
     public void addCat(Cat cat) {
-        myPet = cat;
+        if (isNull(myPet) || !myPet.equals(cat)) {
+            myPet = cat;
+            cat.addOwner(this);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        User user = (User) o;
+
+        if (myBalance != user.myBalance) {
+            return false;
+        }
+        if (!inventory.equals(user.inventory)) {
+            return false;
+        }
+        return lastLogin.equals(user.lastLogin);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = myBalance;
+        result = 31 * result + inventory.hashCode();
+        result = 31 * result + lastLogin.hashCode();
+        return result;
     }
 
     // REQUIRES: inventory.size() must be >= 1
@@ -95,14 +127,14 @@ public class User implements Writable {
 
     // MODIFIES: this
     // EFFECTS: randomly choose a breed from a list of two, initialize a cat with that breed and add it to user
-    private void createRandomCat() {
+    private Cat createRandomCat() {
         List<String> breedList = new ArrayList<>();
         breedList.add("Ragdoll");
         breedList.add("British Short hair");
         Random randomizer = new Random();
         String randomBreed = breedList.get(randomizer.nextInt(breedList.size()));
         Cat cat = new Cat(randomBreed, 50, 50, 50);
-        addCat(cat);
+        return cat;
     }
 
     // EFFECTS: returns foods in this USER as a JSON array

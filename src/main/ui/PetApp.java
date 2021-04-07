@@ -123,7 +123,7 @@ public class PetApp extends JFrame implements ActionListener {
         setFrameDefault(statusFrame, "Status");
         //  display status
         JLabel statusLabel = new JLabel();
-        statusLabel.setText(displayLastLogin() + displayBalance() + user.getCat().printSummary());
+        statusLabel.setText(displayLastLogin() + displayBalance() + user.getCat().returnSummary());
         statusFrame.add(statusLabel);
         // add go back button
         JPanel buttons = new JPanel();
@@ -251,7 +251,7 @@ public class PetApp extends JFrame implements ActionListener {
         if (user.getInventory().isEmpty()) {
             JOptionPane.showMessageDialog(null, "You don't have anything to feed your cat!");
         } else {
-            user.getCat().feed(user.getInventory().get(0));
+            user.getCat().eat(user.getInventory().get(0));
             if (user.getInventory().get(0).getName().equals("Diet food")) {
                 JOptionPane.showMessageDialog(null, "Consumed 1 Diet Food, your cat hates it!");
             } else {
