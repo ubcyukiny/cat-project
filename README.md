@@ -11,7 +11,7 @@ What this application can do:
 - Feed, play, with your cat using consumables!
 
 
-##User Stories P1
+## User Stories P1
 - As a user, I want to be able to create my cat and add it to user 
 
 - As a user, I want to be able to buy food from shop (adding multiple X to Y)
@@ -22,7 +22,7 @@ What this application can do:
 
 - As a user, I want to be able to view my cat's status(happiness, hunger level, energy level)
 
-##User Stories P2
+## User Stories P2
 - As a user, I want to be able to save my user data to file 
     (saved automatically when quitting game)
 
@@ -31,7 +31,7 @@ What this application can do:
     
 - As a user, I want to see more realism by adding time and stat decay in Cat...
 
-##User Stories P3
+## User Stories P3
 - Can Feed, Purchase Food, and View Food in Gui
 
 - When auto save, or load, pop up message will indicate saving to/from "./data/user.json" or not found
@@ -39,64 +39,62 @@ What this application can do:
     
 - When cat happiness reaches >= 70 or >= 90, new cat icons will appear and replace old
 
-##User Stories P4
+## User Stories P4
 - Task 2: Make appropriate use of a bi-directional association somewhere in your code. 
 
-I have added a bi-directional association between Class Cat and User, when user addCat to his field, cat will also add 
-user to owner. The method is addCat(Cat cat) in model.User and addOwner(User user) in model.Cat
+    I have added a bi-directional association between Class Cat and User, when user addCat to his field, cat will also
+    add user to owner. The method is addCat(Cat cat) in model.User and addOwner(User user) in model.Cat
 
 - Task 3: 
 I would separate PetApp (Game logic) and the GUI, and make a new class called GUI, because of the Single Responsibility
 Principle. 
 
-Currently, in PetApp, it's runs the GUI, do game actions, and save load using the JsonReader and JsonWriter class. 
+    Currently, in PetApp, it's runs the GUI, do game actions, and save load using the JsonReader and JsonWriter class. 
 
-I would extract GUI related fields and methods, like JFrame, JLabel Jbutton. The PetApp will have a GUI field and the 
-constructor would then initialize GUI inside PetApp like this:
+    I would extract GUI related fields and methods, like JFrame, JLabel Jbutton. The PetApp will have a GUI field and 
+    the constructor would then initialize GUI inside PetApp like this:
 
-// Constructor 
-void PetApp(){
-    ...
-    gui = new GUI(this); 
-}
-
-And in GUI class, we would make a PetApp field, and the constructor of GUI includes a PetApp parameter, so it can uses 
-PetApp's field and method.
-
-When GUI "listens" player's actionEvent, it will call PetApp's method, using the PetApp field. It looks like this:
-
-public class GUI {
-    private PetApp game;
-    
-    private void actionPerformedResponse (ActionEvent e) {
-        game.doResponse();
+    void PetApp(){
+        ...
+        gui = new GUI(this); 
     }
-    
-}
+
+    And in GUI class, we would make a PetApp field, and the constructor of GUI includes a PetApp parameter, so it can 
+    uses PetApp's field and method.
+
+    When GUI "listens" player's actionEvent, it will call PetApp's method, using the PetApp field. It looks like this:
+
+    public class GUI {
+        private PetApp game;
+        
+        private void actionPerformedResponse (ActionEvent e) {
+            game.doResponse();
+        } 
+    }
 
 - MINOR REFACTORINGS 
 
-1.
 
-Currently, in shop class, theres a list of Food and 3 Food objects in the field, the constructor would then add the 
-3 objects in the List<Food>.
+    1. Currently, in shop class, theres a list of Food and 3 Food objects in the field, the constructor would then add
+    the 3 objects in the List<Food>.
 
-Inside Shop class, in constructor method, add a method called initialize catalogue, inside the method, it will use 
-list.add(new Food (...)); 
-so we can modify the shop catalogue in the initalize catalogue method, not in the fields of Shop
+    Inside Shop class, in constructor method, add a method called initialize catalogue, inside the method, it will use 
+    list.add(new Food (...)); 
+    so we can modify the shop catalogue in the initalize catalogue method, not in the fields of Shop
 
-2.
 
-In the User class, there is a createRandomCat method that randomly chooses a name from a list of breed names, and create
-a cat object based on the breed name. I would extract a randomizeBreed method from it, remove the createRandomCat method
-in User class, and add randomizeBreed method in Cat class constructor.
+    2.In the User class, there is a createRandomCat method that randomly chooses a name from a list of breed names, and 
+    create a cat object based on the breed name. 
+    
+    I would extract a randomizeBreed method from it, remove the createRandomCat method in User class, and add 
+    randomizeBreed method in Cat class constructor.
 
-3. 
 
-In PetApp class, there are getShopCatalogue, displayBalance, and displayLastLogin methods to return formatted Strings 
-to put inside JLabel for the Gui. These methods should be moved to their own class, getShopCatalogue to Shop class,
-displayBalance and displayLastLogin to User class. The proposed new GUI class would call these methods from their own
-classes. 
+    3. In PetApp class, there are getShopCatalogue, displayBalance, and displayLastLogin methods to return formatted 
+    Strings to put inside JLabel for the Gui. 
+    
+    These methods should be moved to their own class, getShopCatalogue to Shop class, displayBalance and 
+    displayLastLogin to User class. The proposed new GUI class would call these methods from their own classes. 
 
  
 
