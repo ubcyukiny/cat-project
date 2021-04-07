@@ -75,7 +75,7 @@ Principle.
 - MINOR REFACTORINGS 
 
 
-    1. Currently, in shop class, theres a list of Food and 3 Food objects in the field, the constructor would then add
+  1. Currently, in shop class, theres a list of Food and 3 Food objects in the field, the constructor would then add
     the 3 objects in the List<Food>.
 
     Inside Shop class, in constructor method, add a method called initialize catalogue, inside the method, it will use 
@@ -83,14 +83,14 @@ Principle.
     so we can modify the shop catalogue in the initalize catalogue method, not in the fields of Shop
 
 
-    2.In the User class, there is a createRandomCat method that randomly chooses a name from a list of breed names, and 
+  2. In the User class, there is a createRandomCat method that randomly chooses a name from a list of breed names, and 
     create a cat object based on the breed name. 
     
     I would extract a randomizeBreed method from it, remove the createRandomCat method in User class, and add 
     randomizeBreed method in Cat class constructor.
 
 
-    3. In PetApp class, there are getShopCatalogue, displayBalance, and displayLastLogin methods to return formatted 
+  3. In PetApp class, there are getShopCatalogue, displayBalance, and displayLastLogin methods to return formatted 
     Strings to put inside JLabel for the Gui. 
     
     These methods should be moved to their own class, getShopCatalogue to Shop class, displayBalance and 
