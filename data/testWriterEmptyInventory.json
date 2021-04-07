@@ -1,0 +1,11 @@
+{
+    "Cat": {
+        "happiness": 50,
+        "energyLevel": 50,
+        "hungerLevel": 50,
+        "breed": "British Short hair"
+    },
+    "Time": "2021-03-28",
+    "Balance": 500,
+    "Inventory": []
+}

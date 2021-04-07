@@ -1,0 +1,11 @@
+{
+    "Cat": {
+        "happiness": 50,
+        "energyLevel": 50,
+        "hungerLevel": 50,
+        "breed": "Ragdoll"
+    },
+    "Time": "2021-04-06",
+    "Balance": 500,
+    "Inventory": []
+}
